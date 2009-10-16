@@ -3,11 +3,9 @@
 {% block content %}
 
 {% for entry in latest %}
-    {{ object.title }}
-    <div class="content">
-        {{ entry.body|truncatewords_html:"20"|safe }}
-        <a href="{{entry.get_absolute_url}}">Permalink</a>
-    </div>
+    {{ entry.title }}
+    {{ entry.body|truncatewords_html:"20"|safe }}
+    <a href="{{entry.get_absolute_url}}">Permalink</a>
 {% endfor %}
 
 

@@ -1,1 +1,13 @@
- 
+{% extends "base_blog.html" %}
+
+{% block title %} {{ block.super }} | {{ month|date:"F, Y" }}{% endblock %}
+
+{% block content %}
+<h1>{{ month|date:"F" }} archive</h1>
+{% for object in object_list %}
+    {{ object.title }}
+    {{ object.body|truncatewords_html:"20"|safe }}
+    <a href="{{ object.get_absolute_url }}">Permalink</a>
+{% endfor %}
+{% endblock %}
+

@@ -1,1 +1,22 @@
- 
+{% extends "base_blog.html" %}
+
+{% block title %}{{ block.super }} | {{ year }} Archive{% endblock %}
+
+
+{% block content %}
+
+    <h3>{{ year }} Archive</h3>
+    <ul class="linklist">
+        {% for date in date_list %}
+            {% if forloop.first %}
+                <li class="first">
+            {% else %}
+                <li>
+            {% endif %}
+            <a href="{{ date|date:"m"|lower }}/">{{ date|date:"F" }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
+
