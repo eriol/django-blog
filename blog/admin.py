@@ -11,16 +11,42 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class EntryForm(forms.ModelForm):
     body = forms.CharField(
-        widget=TinyMCE(attrs={'cols': 80, 'rows': 30})
+        widget=TinyMCE(attrs={'cols': 100, 'rows': 30})
     )
 
     class Meta:
         model = Entry
 
 class EntryAdmin(admin.ModelAdmin):
+    exclude = ('author',)
     form = EntryForm
+    list_display = ('title', 'pub_date', 'status', 'author')
     prepopulated_fields = {'slug': ['title']}
 
+    def has_change_permission(self, request, obj=None):
+        has_class_permission = super(EntryAdmin, self).has_change_permission(
+            request, obj
+        )
+
+        if not has_class_permission:
+            return False
+
+        if (obj is not None and
+            not request.user.is_superuser and
+            request.user.id != obj.author.id):
+                return False
+
+        return True
+
+    def queryset(self, request):
+        if request.user.is_superuser:
+            return Entry.objects.all()
+        return Entry.objects.filter(author=request.user)
+
+    def save_model(self, request, obj, form, change):
+        if not change:
+            obj.author = request.user
+        obj.save()
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Entry, EntryAdmin)
