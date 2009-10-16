@@ -4,7 +4,7 @@ from django.conf.urls.defaults import *
 from blog.models import Category, Entry
 
 entry_info_dict = {
-    'queryset': Entry.objects.all(),
+    'queryset': Entry.live.all(),
     'date_field': 'pub_date',
 }
 

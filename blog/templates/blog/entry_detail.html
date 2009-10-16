@@ -1,1 +1,3 @@
- 
+{% extends "base_blog.html" %}
+
+{% block title %}{{ block.super }} | {{ object.title|escape }}{% endblock %}
