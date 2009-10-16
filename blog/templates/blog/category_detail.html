@@ -1,0 +1,10 @@
+{% extends "base_blog.html" %}
+
+{% block title %}{{ block.super }} | Entries in "{{ object.name|escape }}"{% endblock %}
+
+{% block content %}
+    {% for entry in object.entries.all %}
+        {{ entry.body|truncatewords_html:"20"|safe }}
+        <a href="{{entry.get_absolute_url}}">Permalink</a>
+    {% endfor %}
+{% endblock %}

@@ -9,6 +9,10 @@ entry_info = {
 }
 entry_info_month = dict(entry_info, month_format='%m')
 
+category_info = {
+    'queryset': Category.objects.all(),
+}
+
 urlpatterns = patterns('django.views.generic.date_based',
     (r'^$', 'archive_index', entry_info, 'blog_entry_index'),
     (r'^(?P<year>\d{4})/$', 'archive_year', entry_info,
@@ -19,4 +23,10 @@ urlpatterns = patterns('django.views.generic.date_based',
      entry_info_month, 'blog_entry_archive_day'),
     (r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<slug>[-\w]+)/$',
      'object_detail', entry_info_month, 'blog_entry_detail'),
+
+)
+
+urlpatterns += patterns('',
+    (r'^category/(?P<slug>[-\w]+)/$', 'django.views.generic.list_detail.object_detail', category_info,
+     'blog_category_detail'),
 )

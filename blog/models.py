@@ -20,8 +20,9 @@ class Category(models.Model):
     def __unicode__(self):
         return self.name
 
+    @models.permalink
     def get_absolute_url(self):
-        return '/category/%s/' % self.slug
+        return ('blog_category_detail', (), {'slug': self.slug})
 
 class LiveEntryManager(models.Manager):
 
@@ -45,7 +46,7 @@ class Entry(models.Model):
     body = models.TextField()
 
 
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category, related_name='entries')
     tags = TagField(help_text='Separate tags with spaces.')
 
     author = models.ForeignKey(User)
