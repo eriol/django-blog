@@ -26,10 +26,9 @@ class Category(models.Model):
 class LiveEntryManager(models.Manager):
 
     def get_query_set(self):
-        super(LiveEntryManager, self).get_query_set().filter(
+        return super(LiveEntryManager, self).get_query_set().filter(
             status=self.model.LIVE_STATUS
         )
-
 
 class Entry(models.Model):
     LIVE_STATUS = 1
@@ -41,12 +40,13 @@ class Entry(models.Model):
         (HIDDEN_STATUS, 'Hidden'),
     )
     title = models.CharField(max_length=200, help_text='Max 200 characters')
-    pub_date = models.DateTimeField(default=datetime.datetime.now)
+    pub_date = models.DateTimeField('Publication date',
+                                    default=datetime.datetime.now)
     body = models.TextField()
 
 
     categories = models.ManyToManyField(Category)
-    tags = TagField(help_text="Separate tags with spaces.")
+    tags = TagField(help_text='Separate tags with spaces.')
 
     author = models.ForeignKey(User)
     slug = models.SlugField(unique_for_date='pub_date',
