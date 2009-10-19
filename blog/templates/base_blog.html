@@ -1,5 +1,49 @@
 {% extends "base.html" %}
+{% load blog_tags %}
 
 {% block title %}Words in atmosphere{% endblock %}
 
-{% block sidebar %}{% endblock %}
+{% block sidebar %}
+
+{% get_months_archive as months %}
+{% if months_archive %}
+    <h3>Archives</h3>
+    <ul>
+        {% for month in months_archive %}
+            <li>
+                <a href="{% url blog_entry_archive_month month.year month.month %}">
+                    {{ month|date:"F Y" }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% get_content blog.category as categories %}
+{% if categories %}
+    <h3>Categories</h3>
+    <ul>
+        {% for category in categories %}
+            <li>
+                <a href="{% url blog_category_detail category.slug %}">
+                    {{ category }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% get_content blog.link as links %}
+{% if links %}
+    <h3>Blogroll</h3>
+    <ul>
+        {% for link in links %}
+            <li>
+                <a href="{{ link.url }}">
+                    {{ link.title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
