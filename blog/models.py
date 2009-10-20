@@ -2,6 +2,7 @@
 import datetime
 
 from django.contrib.auth.models import User
+from django.contrib.comments.moderation import CommentModerator, moderator
 from django.db import models
 
 from tagging.fields import TagField
@@ -24,10 +25,10 @@ class Category(models.Model):
     def get_absolute_url(self):
         return ('blog_category_detail', (), {'slug': self.slug})
 
-class LiveEntryManager(models.Manager):
+class EntryLiveManager(models.Manager):
 
     def get_query_set(self):
-        return super(LiveEntryManager, self).get_query_set().filter(
+        return super(EntryLiveManager, self).get_query_set().filter(
             status=self.model.LIVE_STATUS
         )
 
@@ -59,7 +60,7 @@ class Entry(models.Model):
     featured = models.BooleanField(default=False)
 
     objects = models.Manager()
-    live = LiveEntryManager()
+    live = EntryLiveManager()
 
     class Meta:
         ordering = ['-pub_date']
@@ -77,6 +78,14 @@ class Entry(models.Model):
             'day': self.pub_date.strftime('%d'),
             'slug': self.slug
         })
+
+class EntryCommentModerator(CommentModerator):
+    auto_moderate_field = 'pub_date'
+    moderate_after = 30
+    email_notification = True
+    enable_field = 'enable_comments'
+
+moderator.register(Entry, EntryCommentModerator)
 
 class Link(models.Model):
 
