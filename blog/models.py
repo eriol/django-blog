@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 import datetime
 
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.comments.moderation import CommentModerator, moderator
+from django.contrib.sites.models import Site
 from django.db import models
+from django.utils.encoding import smart_str
 
 from tagging.fields import TagField
+
+from blog.akismet import Akismet
 
 class Category(models.Model):
     name = models.CharField(max_length=100, help_text='Max 100 characters')
@@ -84,6 +89,27 @@ class EntryCommentModerator(CommentModerator):
     moderate_after = 30
     email_notification = True
     enable_field = 'enable_comments'
+
+    def moderate(self, comment, content_object, request):
+        already_moderated = super(EntryCommentModerator, self).moderate(
+            comment, content_object, request
+        )
+        if already_moderated:
+            return True
+
+        domain = Site.objects.get_current().domain
+        akismet_api = Akismet(key=settings.AKISMET_API_KEY,
+                              blog_url='http://%s/' % domain)
+        if akismet_api.verify_key():
+            akismet_data = {'comment_type': 'comment',
+                            'referrer': request.META['HTTP_REFERER'],
+                            'user_ip': comment.ip_address,
+                            'user_agent': request.META['HTTP_USER_AGENT']}
+
+            return akismet_api.comment_check(smart_str(comment.comment),
+                                             akismet_data,
+                                             build_data=True)
+        return False
 
 moderator.register(Entry, EntryCommentModerator)
 
