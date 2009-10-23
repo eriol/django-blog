@@ -1,7 +1,0 @@
-A new comment was posted on {{ comment.content_object }}
-by {{ comment.user_name }} ({{ comment.user_email }}).
-http://{{ comment.site.domain }}{{ comment.get_absolute_url }}
-
---------
-{{ comment.comment }}
---------
