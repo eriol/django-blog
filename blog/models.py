@@ -18,7 +18,6 @@ class Category(models.Model):
                                                    'automatically generated'
                                                    'from title. '
                                                    'Must be unique.')
-
     class Meta:
         ordering = ['name']
         verbose_name_plural = 'categories'

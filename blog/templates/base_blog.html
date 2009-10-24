@@ -1,9 +1,25 @@
 {% extends "base.html" %}
 {% load blog_tags %}
 
-{% block title %}Words in atmosphere{% endblock %}
+{% block title %}{% blog_title %}{% endblock %}
+{% block rss %}
+    <link rel="alternate" type="application/rss+xml"
+          title="{% blog_title %}: Latest entries"
+          href="{% url blog_feeds 'entries' %}">
+
+{% get_content blog.category as categories %}
+{% if categories %}
+    {% for category in categories %}
+        <link rel="alternate" type="application/rss+xml"
+              title="{% blog_title %}: Latest entries in category {{ category.name }}"
+              href="{% url blog_feeds 'category' %}{{ category.slug }}/">
+    {% endfor %}
+{% endif %}
+{% endblock %}
 
 {% block sidebar %}
+
+{{ feeds }}
 
 {% get_months_archive as months %}
 {% if months_archive %}

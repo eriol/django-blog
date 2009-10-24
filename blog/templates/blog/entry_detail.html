@@ -1,5 +1,5 @@
 {% extends "base_blog.html" %}
-{% load comments %}
+{% load comments markup %}
 {% block title %}{{ block.super }} | {{ object.title|escape }}{% endblock %}
 
 {% block content %}
@@ -12,10 +12,9 @@
     {% for comment in comment_list %}
         <p>On {{ comment.submit_date|date:"F j, Y" }},
         {{ comment.name }} said:</p>
-    {{ comment.comment }}
+    {{ comment.comment|restructuredtext }}
     {% endfor %}
 
     {% render_comment_form for object %}
 
 {% endblock %}
-

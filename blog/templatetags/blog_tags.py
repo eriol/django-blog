@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
 from django import template
+from django.conf import settings
 from django.db.models import get_model
 
 register = template.Library()
+
+@register.simple_tag
+def blog_title():
+    return settings.BLOG_TITLE
 
 @register.tag(name='get_months_archive')
 def do_get_month_archive(parser, token):

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls.defaults import *
 
+from blog.feeds import LatestEntriesFeed, CategoryFeed
 from blog.models import Category, Entry
 
 entry_info = {
@@ -12,6 +13,9 @@ entry_info_month = dict(entry_info, month_format='%m')
 category_info = {
     'queryset': Category.objects.all(),
 }
+
+feeds = {'entries': LatestEntriesFeed,
+         'category': CategoryFeed}
 
 urlpatterns = patterns('django.views.generic.date_based',
     (r'^$', 'archive_index', entry_info, 'blog_entry_index'),
@@ -29,4 +33,9 @@ urlpatterns = patterns('django.views.generic.date_based',
 urlpatterns += patterns('django.views.generic.list_detail',
     (r'^category/(?P<slug>[-\w]+)/$', 'object_detail', category_info,
      'blog_category_detail'),
+)
+
+urlpatterns += patterns('',
+    (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed',
+    {'feed_dict': feeds}, 'blog_feeds'),
 )
