@@ -23,6 +23,14 @@ class EntryAdmin(admin.ModelAdmin):
     list_display = ('title', 'pub_date', 'status', 'author')
     prepopulated_fields = {'slug': ['title']}
 
+    fieldsets = [
+        (None, {'fields': ['title', 'body', 'status', 'categories']}),
+        ('Date information', {'fields': ['pub_date'],
+                              'classes': ['collapse']}),
+        ('Options', {'fields': ['slug', 'featured', 'enable_comments', 'tags'],
+                     'classes': ['collapse']}),
+    ]
+
     def has_change_permission(self, request, obj=None):
         has_class_permission = super(EntryAdmin, self).has_change_permission(
             request, obj
