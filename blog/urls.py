@@ -33,7 +33,6 @@ urlpatterns += patterns('',
      'blog.views.enhanced_object_detail', entry_info_month, 'blog_entry_detail'),
 )
 
-
 urlpatterns += patterns('django.views.generic.list_detail',
     (r'^category/(?P<slug>[-\w]+)/$', 'object_detail', category_info,
      'blog_category_detail'),
