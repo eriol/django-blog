@@ -36,9 +36,8 @@ class CategoryFeed(LatestEntriesFeed):
         return obj.get_absolute_url()
 
     def title(self, obj):
-        return '%s: Latest entries in category "%s"' % (settings.BLOG_TITLE,
+        return '%s: latest entries in category "%s"' % (settings.BLOG_TITLE,
                                                         obj.name)
 
     def items(self, obj):
         return obj.entries.all()[:10]
-
