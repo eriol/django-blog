@@ -1,0 +1,11 @@
+A comment has been posted on {{ content_object }}.
+by {{ comment.name }} ({{ comment.email }})
+
+--------8<--------
+
+{{ comment.comment }}
+
+-------->8--------
+
+http://{{ comment.site.domain }}{{ comment.get_absolute_url }}
+
