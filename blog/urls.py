@@ -22,14 +22,14 @@ urlpatterns = patterns('django.views.generic.date_based',
     (r'^$', 'archive_index', entry_info, 'blog_entry_index'),
     (r'^(?P<year>\d{4})/$', 'archive_year', entry_info,
      'blog_entry_archive_year'),
-    (r'^(?P<year>\d{4})/(?P<month>\d{2})/$', 'archive_month', entry_info_month,
+    (r'^(?P<year>\d{4})/(?P<month>\w{1,2})/$', 'archive_month', entry_info_month,
      'blog_entry_archive_month'),
-    (r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/$', 'archive_day',
+    (r'^(?P<year>\d{4})/(?P<month>\w{1,2})/(?P<day>\w{1,2})/$', 'archive_day',
      entry_info_month, 'blog_entry_archive_day'),
 )
 
 urlpatterns += patterns('',
-    (r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<slug>[-\w]+)/$',
+    (r'^(?P<year>\d{4})/(?P<month>\w{1,2})/(?P<day>\w{1,2})/(?P<slug>[-\w]+)/$',
      'blog.views.enhanced_object_detail', entry_info_month, 'blog_entry_detail'),
 )
 
