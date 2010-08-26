@@ -8,9 +8,9 @@ from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.encoding import smart_str
 
+from akismet import Akismet
 from tagging.fields import TagField
 
-from blog.akismet import Akismet
 
 class Category(models.Model):
     name = models.CharField(max_length=100, help_text='Max 100 characters')
