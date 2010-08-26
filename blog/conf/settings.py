@@ -6,3 +6,5 @@ TINYMCE_URL = getattr(settings, 'TINYMCE_URL',
 
 TINYMCE_SETUP_URL = getattr(settings, 'TINYMCE_SETUP_URL',
                             '/media/admin/tinymce_setup/tinymce_setup.js')
+
+BLOG_TITLE = getattr(settings, 'BLOG_TITLE', 'A nice blog!')

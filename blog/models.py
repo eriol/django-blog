@@ -50,7 +50,6 @@ class Entry(models.Model):
                                     default=datetime.datetime.now)
     body = models.TextField()
 
-
     categories = models.ManyToManyField(Category, related_name='entries')
     tags = TagField(help_text='Separate tags with spaces.')
 
