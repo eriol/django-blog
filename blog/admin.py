@@ -2,24 +2,14 @@
 from django import forms
 from django.contrib import admin
 
-from tinymce.widgets import TinyMCE
-
+from blog.conf import settings
 from blog.models import Category, Entry, Link
 
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['name']}
 
-class EntryForm(forms.ModelForm):
-    body = forms.CharField(
-        widget=TinyMCE(attrs={'cols': 100, 'rows': 30})
-    )
-
-    class Meta:
-        model = Entry
-
 class EntryAdmin(admin.ModelAdmin):
     exclude = ('author',)
-    form = EntryForm
     list_display = ('title', 'pub_date', 'status', 'author')
     prepopulated_fields = {'slug': ['title']}
 
@@ -55,6 +45,9 @@ class EntryAdmin(admin.ModelAdmin):
         if not change:
             obj.author = request.user
         obj.save()
+
+    class Media:
+        js = [settings.TINYMCE_URL, settings.TINYMCE_SETUP_URL]
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Entry, EntryAdmin)
