@@ -25,6 +25,10 @@ class Category(models.Model):
     def __unicode__(self):
         return self.name
 
+    def live_entries(self):
+        """Returns only live entries."""
+        return self.entries.filter(status=Entry.LIVE_STATUS)
+
     @models.permalink
     def get_absolute_url(self):
         return ('blog_category_detail', (), {'slug': self.slug})
