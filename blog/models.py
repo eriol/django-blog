@@ -7,20 +7,25 @@ from django.contrib.comments.moderation import CommentModerator, moderator
 from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.encoding import smart_str
+from django.utils.translation import ugettext_lazy as _
 
 from akismet import Akismet
 from tagging.fields import TagField
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, help_text='Max 100 characters')
-    slug = models.SlugField(unique=True, help_text='Suggested value'
-                                                   'automatically generated'
-                                                   'from title. '
-                                                   'Must be unique.')
+    name = models.CharField(_('name'),
+                            max_length=100,
+                            help_text=_('Max 100 characters'))
+    slug = models.SlugField(_('slug'),
+                            unique=True,
+                            help_text=_('Suggested value automatically '
+                                        'generated from title. '
+                                        'Must be unique.'))
     class Meta:
         ordering = ['name']
-        verbose_name_plural = 'categories'
+        verbose_name = _('category')
+        verbose_name_plural = _('categories')
 
     def __unicode__(self):
         return self.name
@@ -45,29 +50,34 @@ class Entry(models.Model):
     DRAFT_STATUS = 2
     HIDDEN_STATUS = 3
     STATUS_CHOICES = (
-        (LIVE_STATUS, 'Live'),
-        (DRAFT_STATUS, 'Draft'),
-        (HIDDEN_STATUS, 'Hidden'),
+        (LIVE_STATUS, _('Live')),
+        (DRAFT_STATUS, _('Draft')),
+        (HIDDEN_STATUS, _('Hidden')),
     )
-    title = models.CharField(max_length=200, help_text='Max 200 characters')
-    pub_date = models.DateTimeField('Publication date',
+    title = models.CharField(max_length=200,
+                             help_text=_('Max 200 characters'))
+    pub_date = models.DateTimeField(_('publication date'),
                                     default=datetime.datetime.now)
-    body = models.TextField()
+    body = models.TextField(_('body'))
 
     categories = models.ManyToManyField(Category,
                                         blank=True,
                                         null=True,
-                                        related_name='entries')
-    tags = TagField(help_text='Separate tags with spaces.')
+                                        related_name='entries',
+                                        verbose_name=_('categories'))
+    tags = TagField(help_text=_('Separate tags with spaces.'))
 
     author = models.ForeignKey(User)
-    slug = models.SlugField(unique_for_date='pub_date',
-                            help_text='Suggested value automatically generated'
-                                      'from title. Must be unique for the'
-                                      'publication date.')
-    status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT_STATUS)
-    enable_comments = models.BooleanField(default=True)
-    featured = models.BooleanField(default=False)
+    slug = models.SlugField(_('slug'),
+                            unique_for_date='pub_date',
+                            help_text=_('Suggested value automatically '
+                                        'generated from title. Must be unique '
+                                        'for the publication date.'))
+    status = models.IntegerField(_('slug'),
+                                 choices=STATUS_CHOICES,
+                                 default=DRAFT_STATUS)
+    enable_comments = models.BooleanField(_('enable comments'), default=True)
+    featured = models.BooleanField(_('featured'), default=False)
 
     objects = models.Manager()
     live = EntryLiveManager()
@@ -128,4 +138,5 @@ class Link(models.Model):
 
     class Meta:
         ordering = ['title']
-        verbose_name_plural = 'links'
+        verbose_name = _('link')
+        verbose_name_plural = _('links')
