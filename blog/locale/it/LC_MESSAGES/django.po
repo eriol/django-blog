@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-28 21:34+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#: models.py:17
+msgid "name"
+msgstr ""
+
+#: models.py:19
+msgid "Max 100 characters"
+msgstr ""
+
+#: models.py:20 models.py:71 models.py:76
+msgid "slug"
+msgstr ""
+
+#: models.py:22
+msgid "Suggested value automatically generated from title. Must be unique."
+msgstr ""
+
+#: models.py:27
+msgid "category"
+msgstr ""
+
+#: models.py:28 models.py:67
+msgid "categories"
+msgstr ""
+
+#: models.py:53
+msgid "Live"
+msgstr ""
+
+#: models.py:54
+msgid "Draft"
+msgstr ""
+
+#: models.py:55
+msgid "Hidden"
+msgstr ""
+
+#: models.py:58
+msgid "Max 200 characters"
+msgstr ""
+
+#: models.py:59
+msgid "publication date"
+msgstr ""
+
+#: models.py:61
+msgid "body"
+msgstr ""
+
+#: models.py:68
+msgid "Separate tags with spaces."
+msgstr ""
+
+#: models.py:73
+msgid ""
+"Suggested value automatically generated from title. Must be unique for the "
+"publication date."
+msgstr ""
+
+#: models.py:79
+msgid "enable comments"
+msgstr ""
+
+#: models.py:80
+msgid "featured"
+msgstr ""
+
+#: models.py:141
+msgid "link"
+msgstr ""
+
+#: models.py:142
+msgid "links"
+msgstr ""
