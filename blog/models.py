@@ -16,7 +16,7 @@ from tagging.fields import TagField
 class Category(models.Model):
     name = models.CharField(_('name'),
                             max_length=100,
-                            help_text=_('Max 100 characters'))
+                            help_text=_('Max 100 characters.'))
     slug = models.SlugField(_('slug'),
                             unique=True,
                             help_text=_('Suggested value automatically '
@@ -55,7 +55,7 @@ class Entry(models.Model):
         (HIDDEN_STATUS, _('Hidden')),
     )
     title = models.CharField(max_length=200,
-                             help_text=_('Max 200 characters'))
+                             help_text=_('Max 200 characters.'))
     pub_date = models.DateTimeField(_('publication date'),
                                     default=datetime.datetime.now)
     body = models.TextField(_('body'))
