@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-02 03:07+0200\n"
+"POT-Creation-Date: 2010-09-03 19:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,19 +27,19 @@ msgstr "nome"
 msgid "Max 100 characters."
 msgstr "Massimo 100 caratteri."
 
-#: models.py:20 models.py:71 models.py:76
+#: models.py:20 models.py:72 models.py:77
 msgid "slug"
 msgstr ""
 
 #: models.py:22
 msgid "Suggested value automatically generated from title. Must be unique."
-msgstr ""
+msgstr "Valore suggerito automaticamente in base al titolo. Deve essere unico."
 
 #: models.py:27
 msgid "category"
 msgstr "categoria"
 
-#: models.py:28 models.py:67
+#: models.py:28 models.py:68
 msgid "categories"
 msgstr "categorie"
 
@@ -55,41 +55,59 @@ msgstr "Bozza"
 msgid "Hidden"
 msgstr "Privato"
 
-#: models.py:58
+#: models.py:57 models.py:135
+msgid "title"
+msgstr "titolo"
+
+#: models.py:59
 #, fuzzy
 msgid "Max 200 characters."
 msgstr "Massimo 200 caratteri."
 
-#: models.py:59
+#: models.py:60
 msgid "publication date"
 msgstr "data di pubblicazione"
 
-#: models.py:61
+#: models.py:62
 msgid "body"
-msgstr ""
+msgstr "articolo"
 
-#: models.py:68
+#: models.py:69
 msgid "Separate tags with spaces."
 msgstr "Separare i tag con spazi."
 
-#: models.py:73
+#: models.py:74
 msgid ""
 "Suggested value automatically generated from title. Must be unique for the "
 "publication date."
 msgstr ""
+"Valore automaticamente generato dal titolo. Deve essere unico per data di "
+"pubblicazione."
 
-#: models.py:79
+#: models.py:80
 msgid "enable comments"
 msgstr "abilita i commenti"
 
-#: models.py:80
+#: models.py:81
 msgid "featured"
-msgstr ""
+msgstr "in evidenza"
 
-#: models.py:141
+#: models.py:88
+msgid "entry"
+msgstr "articolo"
+
+#: models.py:89
+msgid "entries"
+msgstr "articoli"
+
+#: models.py:136
+msgid "url"
+msgstr "url"
+
+#: models.py:143
 msgid "link"
 msgstr "link"
 
-#: models.py:142
+#: models.py:144
 msgid "links"
 msgstr "link"
