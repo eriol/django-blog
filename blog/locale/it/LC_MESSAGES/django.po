@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-03 19:26+0200\n"
+"POT-Creation-Date: 2010-09-03 19:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgstr "nome"
 msgid "Max 100 characters."
 msgstr "Massimo 100 caratteri."
 
-#: models.py:20 models.py:72 models.py:77
+#: models.py:20 models.py:72
 msgid "slug"
 msgstr ""
 
@@ -83,6 +83,10 @@ msgid ""
 msgstr ""
 "Valore automaticamente generato dal titolo. Deve essere unico per data di "
 "pubblicazione."
+
+#: models.py:77
+msgid "status"
+msgstr "stato"
 
 #: models.py:80
 msgid "enable comments"

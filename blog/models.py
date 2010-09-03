@@ -74,7 +74,7 @@ class Entry(models.Model):
                             help_text=_('Suggested value automatically '
                                         'generated from title. Must be unique '
                                         'for the publication date.'))
-    status = models.IntegerField(_('slug'),
+    status = models.IntegerField(_('status'),
                                  choices=STATUS_CHOICES,
                                  default=DRAFT_STATUS)
     enable_comments = models.BooleanField(_('enable comments'), default=True)
