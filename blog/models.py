@@ -54,7 +54,8 @@ class Entry(models.Model):
         (DRAFT_STATUS, _('Draft')),
         (HIDDEN_STATUS, _('Hidden')),
     )
-    title = models.CharField(max_length=200,
+    title = models.CharField(_('title'),
+                             max_length=200,
                              help_text=_('Max 200 characters.'))
     pub_date = models.DateTimeField(_('publication date'),
                                     default=datetime.datetime.now)
@@ -84,7 +85,8 @@ class Entry(models.Model):
 
     class Meta:
         ordering = ['-pub_date']
-        verbose_name_plural = 'entries'
+        verbose_name = _('entry')
+        verbose_name_plural = _('entries')
 
     def __unicode__(self):
         return self.title
@@ -130,8 +132,8 @@ moderator.register(Entry, EntryCommentModerator)
 
 class Link(models.Model):
 
-    title = models.CharField(max_length=200)
-    url = models.URLField(unique=True)
+    title = models.CharField(_('title'), max_length=200)
+    url = models.URLField(_('url'), unique=True)
 
     def __unicode__(self):
         return self.title
