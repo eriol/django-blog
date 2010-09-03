@@ -68,7 +68,7 @@ class Entry(models.Model):
                                         verbose_name=_('categories'))
     tags = TagField(help_text=_('Separate tags with spaces.'))
 
-    author = models.ForeignKey(_('author'), User)
+    author = models.ForeignKey(User, verbose_name=_('author'))
     slug = models.SlugField(_('slug'),
                             unique_for_date='pub_date',
                             help_text=_('Suggested value automatically '
