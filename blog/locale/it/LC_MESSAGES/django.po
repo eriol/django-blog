@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-03 19:37+0200\n"
+"POT-Creation-Date: 2010-09-03 19:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,6 +75,10 @@ msgstr "articolo"
 #: models.py:69
 msgid "Separate tags with spaces."
 msgstr "Separare i tag con spazi."
+
+#: models.py:71
+msgid "author"
+msgstr "autore"
 
 #: models.py:74
 msgid ""
