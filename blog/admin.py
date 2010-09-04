@@ -14,11 +14,12 @@ class EntryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['title']}
 
     fieldsets = [
-        (None, {'fields': ['title', 'body', 'status', 'categories']}),
+        (None, {'fields': ['title', 'body', 'status']}),
         ('Date information', {'fields': ['pub_date'],
                               'classes': ['collapse']}),
-        ('Options', {'fields': ['slug', 'featured', 'enable_comments', 'tags'],
-                     'classes': ['collapse']}),
+        ('Options', {'fields': ['slug', 'featured', 'enable_comments',
+                                'categories', 'tags'],
+                     'classes': ['collapse', 'closed']}),
     ]
 
     def has_change_permission(self, request, obj=None):
