@@ -66,7 +66,8 @@ class Entry(models.Model):
                                         null=True,
                                         related_name='entries',
                                         verbose_name=_('categories'))
-    tags = TagField(help_text=_('Separate tags with spaces.'))
+    tags = TagField(help_text=_('Separate tags with spaces.'),
+                    verbose_name=_('tags'))
 
     author = models.ForeignKey(User, verbose_name=_('author'))
     slug = models.SlugField(_('slug'),
