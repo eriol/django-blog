@@ -68,7 +68,6 @@ msgid "title"
 msgstr "titolo"
 
 #: models.py:59
-#, fuzzy
 msgid "Max 200 characters."
 msgstr "Massimo 200 caratteri."
 
@@ -106,7 +105,7 @@ msgstr "stato"
 
 #: models.py:81
 msgid "enable comments"
-msgstr "abilita i commenti"
+msgstr "abilita commenti"
 
 #: models.py:82
 msgid "featured"
