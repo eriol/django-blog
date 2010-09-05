@@ -13,8 +13,9 @@ class CategoryAdmin(admin.ModelAdmin):
 class EntryAdmin(admin.ModelAdmin):
     exclude = ('author',)
     list_display = ('title', 'pub_date', 'status', 'author', 'enable_comments')
-    search_fields = ['title',]
-    list_filter = ('status', 'enable_comments')
+    search_fields = ['title', 'author', 'author__first_name',
+                     'author__last_name', 'author__email']
+    list_filter = ('status', 'enable_comments', 'featured')
 
     prepopulated_fields = {'slug': ['title']}
 
