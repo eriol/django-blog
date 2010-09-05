@@ -1,20 +1,23 @@
 {% extends "base_blog.html" %}
 {% load comments markup %}
 {% block title %}{{ block.super }} | {{ object.title|escape }}{% endblock %}
+{% csrf_token %}
 
 {% block content %}
     {{ object.title }}
     {{ object.body|safe }}
 
-    <h2>Comments</h2>
+	{% if object.enable_comments %}
+		<h2>Comments</h2>
 
-    {% get_comment_list for object as comment_list %}
-    {% for comment in comment_list %}
-        <p>On {{ comment.submit_date|date:"F j, Y" }},
-        {{ comment.name }} said:</p>
-    {{ comment.comment|restructuredtext }}
-    {% endfor %}
+		{% get_comment_list for object as comment_list %}
+		{% for comment in comment_list %}
+			<p>On {{ comment.submit_date|date:"F j, Y" }},
+			{{ comment.name }} said:</p>
+		{{ comment.comment|restructuredtext }}
+		{% endfor %}
 
-    {% render_comment_form for object %}
+		{% render_comment_form for object %}
+	{%  endif %}
 
 {% endblock %}
