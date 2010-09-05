@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.contrib import admin
+from django.utils.translation import ugettext_lazy as _
+
 
 from blog.conf import settings
 from blog.models import Category, Entry, Link
@@ -10,16 +12,19 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class EntryAdmin(admin.ModelAdmin):
     exclude = ('author',)
-    list_display = ('title', 'pub_date', 'status', 'author')
+    list_display = ('title', 'pub_date', 'status', 'author', 'enable_comments')
+    search_fields = ['title',]
+    list_filter = ('status', 'enable_comments')
+
     prepopulated_fields = {'slug': ['title']}
 
     fieldsets = [
         (None, {'fields': ['title', 'body', 'status']}),
-        ('Date information', {'fields': ['pub_date'],
-                              'classes': ['collapse']}),
-        ('Options', {'fields': ['slug', 'featured', 'enable_comments',
-                                'categories', 'tags'],
-                     'classes': ['collapse', 'closed']}),
+        (_('Date information'), {'fields': ['pub_date'],
+                                 'classes': ['collapse']}),
+        (_('Options'), {'fields': ['slug', 'featured', 'enable_comments',
+                                   'categories', 'tags'],
+                        'classes': ['collapse', 'closed']}),
     ]
 
     def has_change_permission(self, request, obj=None):
