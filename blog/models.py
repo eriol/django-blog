@@ -12,6 +12,8 @@ from django.utils.translation import ugettext_lazy as _
 from akismet import Akismet
 from tagging.fields import TagField
 
+from blog.conf import settings
+
 
 class Category(models.Model):
     name = models.CharField(_('name'),
@@ -78,7 +80,8 @@ class Entry(models.Model):
     status = models.IntegerField(_('status'),
                                  choices=STATUS_CHOICES,
                                  default=DRAFT_STATUS)
-    enable_comments = models.BooleanField(_('enable comments'), default=True)
+    enable_comments = models.BooleanField(_('enable comments'),
+                                          default=settings.BLOG_COMMENTS)
     featured = models.BooleanField(_('featured'), default=False)
 
     objects = models.Manager()
