@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.contrib import admin
+from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -53,8 +54,14 @@ class EntryAdmin(admin.ModelAdmin):
             obj.author = request.user
         obj.save()
 
+    formfield_overrides = {
+        models.TextField:
+            {'widget': forms.Textarea(attrs={'class': 'ckeditor'})},
+    }
+
     class Media:
-        js = [settings.TINYMCE_URL, settings.TINYMCE_SETUP_URL]
+        css = {'all': settings.BLOG_CUSTOM_CSS}
+        js = [settings.CKEDITOR_URL]
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Entry, EntryAdmin)

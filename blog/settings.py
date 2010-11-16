@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 
-TINYMCE_URL = getattr(settings, 'TINYMCE_URL',
-                      '/media/admin/tinymce/jscripts/tiny_mce/tiny_mce.js')
 
-TINYMCE_SETUP_URL = getattr(settings, 'TINYMCE_SETUP_URL',
-                            '/media/admin/tinymce_setup/tinymce_setup.js')
-
+CKEDITOR_URL = getattr(settings, 'CKEDITOR_URL', 'ckeditor/ckeditor.js')
+# Title of the blog
 BLOG_TITLE = getattr(settings, 'BLOG_TITLE', 'A nice blog!')
-
+# If True comments are enabled by default
 BLOG_COMMENTS = getattr(settings, 'BLOG_COMMENTS', True)
+# Default value for custom css is an empty tuple to give greater flexibility.
+# In yours settings.py you should use:
+# BLOG_CUSTOM_CSS = ('custom-css.css',) # single css file
+# BLOG_CUSTOM_CSS = ('custom-css1.css', 'custom-css2.css') # multiple css
+BLOG_CUSTOM_CSS = getattr(settings, 'BLOG_CUSTOM_CSS', ())
