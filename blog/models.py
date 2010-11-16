@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from akismet import Akismet
 from tagging.fields import TagField
 
-from blog.conf import settings
+from blog import settings
 
 
 class Category(models.Model):

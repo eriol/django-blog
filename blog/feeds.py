@@ -5,7 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.utils.feedgenerator import Atom1Feed
 
-from blog.conf import settings
+from blog import settings
 from blog.models import Category, Entry
 
 class LatestEntriesFeed(Feed):

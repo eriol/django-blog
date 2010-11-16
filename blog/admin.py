@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
 
-from blog.conf import settings
+from blog import settings
 from blog.models import Category, Entry, Link
 
 class CategoryAdmin(admin.ModelAdmin):
