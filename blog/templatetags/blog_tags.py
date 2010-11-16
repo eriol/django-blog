@@ -2,7 +2,7 @@
 from django import template
 from django.db.models import get_model
 
-from blog.conf import settings
+from blog import settings
 
 register = template.Library()
 
