@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
 
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.comments.moderation import CommentModerator, moderator
 from django.contrib.sites.models import Site

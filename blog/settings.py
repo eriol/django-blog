@@ -12,3 +12,6 @@ BLOG_COMMENTS = getattr(settings, 'BLOG_COMMENTS', True)
 # BLOG_CUSTOM_CSS = ('custom-css.css',) # single css file
 # BLOG_CUSTOM_CSS = ('custom-css1.css', 'custom-css2.css') # multiple css
 BLOG_CUSTOM_CSS = getattr(settings, 'BLOG_CUSTOM_CSS', ())
+# Default value for Akismet Key is an empty string but it can be set in the
+# main settings.py
+AKISMET_API_KEY = getattr(settings, 'AKISMET_API_KEY', '')
