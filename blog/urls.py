@@ -15,9 +15,6 @@ category_info = {
     'queryset': Category.objects.all(),
 }
 
-feeds = {'entries': LatestEntriesFeed,
-         'category': CategoryFeed}
-
 urlpatterns = patterns('django.views.generic.date_based',
     (r'^$', 'archive_index', entry_info, 'blog_entry_index'),
     (r'^(?P<year>\d{4})/$', 'archive_year', entry_info,
@@ -39,6 +36,8 @@ urlpatterns += patterns('django.views.generic.list_detail',
 )
 
 urlpatterns += patterns('',
-    (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed',
-    {'feed_dict': feeds}, 'blog_feeds'),
+    url(r'^feeds/entries/$', LatestEntriesFeed(), name='latest-entries-feed'),
+    url(r'^feeds/category/(?P<slug>[-\w]+)/$',
+        CategoryFeed(),
+        name='latest-category-entries-feed'),
 )

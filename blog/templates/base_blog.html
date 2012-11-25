@@ -5,14 +5,14 @@
 {% block rss %}
     <link rel="alternate" type="application/rss+xml"
           title="{% blog_title %}: Latest entries"
-          href="{% url blog_feeds 'entries' %}">
+          href="{% url latest-entries-feed %}">
 
 {% get_content blog.category as categories %}
 {% if categories %}
     {% for category in categories %}
         <link rel="alternate" type="application/rss+xml"
               title="{% blog_title %}: Latest entries in category {{ category.name }}"
-              href="{% url blog_feeds 'category' %}{{ category.slug }}/">
+              href="{% url latest-category-entries-feed %}{{ category.slug }}/">
     {% endfor %}
 {% endif %}
 {% endblock %}
