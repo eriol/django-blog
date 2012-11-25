@@ -3,7 +3,7 @@ from django.contrib.sites.models import Site
 from django.contrib.syndication.views import Feed, FeedDoesNotExist
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
-from django.utils.feedgenerator import Atom1Feed
+from django.shortcuts import get_object_or_404
 
 from blog import settings
 from blog.models import Category, Entry
@@ -25,10 +25,8 @@ class LatestEntriesFeed(Feed):
 
 class CategoryFeed(LatestEntriesFeed):
 
-    def get_object(self, bits):
-        if len(bits) != 1:
-            raise ObjectDoesNotExist
-        return Category.objects.get(slug__exact=bits[0])
+    def get_object(self, request, slug):
+        return get_object_or_404(Category, slug__exact=slug)
 
     def link(self, obj):
         if not obj:
