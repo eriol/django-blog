@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.sites.models import Site
-from django.contrib.syndication.feeds import Feed, FeedDoesNotExist
+from django.contrib.syndication.views import Feed, FeedDoesNotExist
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.utils.feedgenerator import Atom1Feed
