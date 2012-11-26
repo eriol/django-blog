@@ -6,14 +6,11 @@
 {% block content %}
 
     <h3>{{ year }} Archive</h3>
-    <ul class="linklist">
+    <ul>
         {% for date in date_list %}
-            {% if forloop.first %}
-                <li class="first">
-            {% else %}
-                <li>
-            {% endif %}
-            <a href="{{ date|date:"m"|lower }}/">{{ date|date:"F" }}</a></li>
+        <li>
+            <a href="{{ date|date:"m"|lower }}/">{{ date|date:"F" }}</a>
+        </li>
         {% endfor %}
     </ul>
 
