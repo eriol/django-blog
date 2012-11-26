@@ -1,41 +1,52 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls.defaults import *
+from django.views.generic.dates import (
+    ArchiveIndexView,
+    YearArchiveView,
+    MonthArchiveView,
+    DayArchiveView
+)
+from django.views.generic.list import ListView
+
 
 from blog.feeds import LatestEntriesFeed, CategoryFeed
 from blog.models import Category, Entry
+from blog.views import EnhancedDateDetailView
 
 entry_info = {
     'queryset': Entry.live.all(),
     'date_field': 'pub_date',
+    'paginate_by': 10,
 }
-
 entry_info_month = dict(entry_info, month_format='%m')
 
 category_info = {
     'queryset': Category.objects.all(),
+    'paginate_by': 10,
 }
 
-urlpatterns = patterns('django.views.generic.date_based',
-    (r'^$', 'archive_index', entry_info, 'blog_entry_index'),
-    (r'^(?P<year>\d{4})/$', 'archive_year', entry_info,
-     'blog_entry_archive_year'),
-    (r'^(?P<year>\d{4})/(?P<month>\w{1,2})/$', 'archive_month', entry_info_month,
-     'blog_entry_archive_month'),
-    (r'^(?P<year>\d{4})/(?P<month>\w{1,2})/(?P<day>\w{1,2})/$', 'archive_day',
-     entry_info_month, 'blog_entry_archive_day'),
-)
 
-urlpatterns += patterns('',
-    (r'^(?P<year>\d{4})/(?P<month>\w{1,2})/(?P<day>\w{1,2})/(?P<slug>[-\w]+)/$',
-     'blog.views.enhanced_object_detail', entry_info_month, 'blog_entry_detail'),
-)
+urlpatterns = patterns('',
+    url(r'^$', ArchiveIndexView.as_view(**entry_info), name='blog_entry_index'),
+    url(r'^(?P<year>\d{4})/$',
+        YearArchiveView.as_view(**entry_info),
+        name='blog_entry_archive_year'),
+    url(r'^(?P<year>\d{4})/(?P<month>\w{1,2})/$',
+        MonthArchiveView.as_view(**entry_info_month),
+        name = 'blog_entry_archive_month'),
+    url(r'^(?P<year>\d{4})/(?P<month>\w{1,2})/(?P<day>\w{1,2})/$',
+        DayArchiveView.as_view(**entry_info_month),
+        name='blog_entry_archive_day'),
 
-urlpatterns += patterns('django.views.generic.list_detail',
-    (r'^category/(?P<slug>[-\w]+)/$', 'object_detail', category_info,
-     'blog_category_detail'),
-)
+    url(r'^(?P<year>\d{4})/(?P<month>\w{1,2})/(?P<day>\w{1,2})/(?P<slug>[-\w]+)/$',
+        EnhancedDateDetailView.as_view(),
+        name='blog_entry_detail'),
 
-urlpatterns += patterns('',
+    url(r'^category/(?P<slug>[-\w]+)/$',
+        ListView.as_view(**category_info),
+        name='blog_category_detail'),
+
+    # Feeds
     url(r'^feeds/entries/$', LatestEntriesFeed(), name='latest-entries-feed'),
     url(r'^feeds/category/(?P<slug>[-\w]+)/$',
         CategoryFeed(),
