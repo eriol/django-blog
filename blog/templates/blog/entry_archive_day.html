@@ -3,7 +3,7 @@
 {% block title %} {{ block.super }} | {{ day|date:"j, F, Y" }}{% endblock %}
 
 {% block content %}
-<h1>{{ day|date:"j F Y" }} archive</h1>
+<h1>{{ day|date:"j F Y" }} Archive</h1>
 {% for object in object_list %}
     {{ object.title }}
     {{ object.body|truncatewords_html:"20"|safe }}
