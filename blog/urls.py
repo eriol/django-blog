@@ -19,6 +19,7 @@ entry_info = {
     'paginate_by': 10,
 }
 entry_info_month = dict(entry_info, month_format='%m')
+entry_info_year = {k: entry_info[k] for k in entry_info if k != 'paginate_by'}
 
 category_info = {
     'queryset': Category.objects.all(),
@@ -29,7 +30,7 @@ category_info = {
 urlpatterns = patterns('',
     url(r'^$', ArchiveIndexView.as_view(**entry_info), name='blog_entry_index'),
     url(r'^(?P<year>\d{4})/$',
-        YearArchiveView.as_view(**entry_info),
+        YearArchiveView.as_view(**entry_info_year),
         name='blog_entry_archive_year'),
     url(r'^(?P<year>\d{4})/(?P<month>\w{1,2})/$',
         MonthArchiveView.as_view(**entry_info_month),
