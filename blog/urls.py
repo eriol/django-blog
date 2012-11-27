@@ -6,7 +6,7 @@ from django.views.generic.dates import (
     MonthArchiveView,
     DayArchiveView
 )
-from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 
 from blog.feeds import LatestEntriesFeed, CategoryFeed
@@ -23,7 +23,6 @@ entry_info_year = {k: entry_info[k] for k in entry_info if k != 'paginate_by'}
 
 category_info = {
     'queryset': Category.objects.all(),
-    'paginate_by': 10,
 }
 
 
@@ -44,7 +43,7 @@ urlpatterns = patterns('',
         name='blog_entry_detail'),
 
     url(r'^category/(?P<slug>[-\w]+)/$',
-        ListView.as_view(**category_info),
+        DetailView.as_view(**category_info),
         name='blog_category_detail'),
 
     # Feeds
