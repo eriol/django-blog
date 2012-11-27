@@ -10,6 +10,7 @@ from blog.models import Category, Entry
 
 class LatestEntriesFeed(Feed):
     title = '%s: latest entries' % settings.BLOG_TITLE
+    description_template = 'feeds/entries_description.html'
 
     def items(self):
         return Entry.live.all()[:10]
@@ -24,6 +25,7 @@ class LatestEntriesFeed(Feed):
         return item.author
 
 class CategoryFeed(LatestEntriesFeed):
+    description_template = 'feeds/category_description.html'
 
     def get_object(self, request, slug):
         return get_object_or_404(Category, slug__exact=slug)
