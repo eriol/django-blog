@@ -13,7 +13,6 @@ setup(
     package_data = {
         'blog': [
             'locale/*/LC_MESSAGES/*',
-            'templates/flatpages/*',
         ],
     },
 )
