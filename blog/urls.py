@@ -19,7 +19,9 @@ entry_info = {
     'paginate_by': 10,
 }
 entry_info_month = dict(entry_info, month_format='%m')
-entry_info_year = {k: entry_info[k] for k in entry_info if k != 'paginate_by'}
+
+entry_info_year = entry_info.copy()
+del entry_info_year['paginate_by']
 
 category_info = {
     'queryset': Category.objects.all(),
