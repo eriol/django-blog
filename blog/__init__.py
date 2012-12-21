@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-VERSION = (0, 0, 7)
+VERSION = (0, 0, 8)
 
 def get_version():
     """Returns project version in a human readable form."""
